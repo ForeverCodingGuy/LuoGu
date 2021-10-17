@@ -1,0 +1,32 @@
+#include<iostream>
+
+using namespace std;
+
+bool is_even(int x)
+{
+   return x % 2 == 0;
+}
+
+bool is_pre(int x)
+{
+return (x > 4 && x <= 12);
+}
+
+int main()
+{
+    int x;
+    cin>>x;
+    if(is_even(x) && is_pre(x))
+{  
+    cout<<"1 1 0 0"<<endl;
+}
+    else if(is_even(x) || is_pre(x))
+{
+    cout<<"0 1 1 0"<<endl;
+}
+    else
+{
+    cout<<"0 0 0 1"<<endl;
+}
+    return 0;
+}
