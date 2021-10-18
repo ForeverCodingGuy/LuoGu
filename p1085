@@ -1,0 +1,31 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int rsu = 0;
+    int min;
+    int max = 0;
+    for(int i = 1;i <= 7;i++)
+    {
+         
+         int a,b;
+         cin>>a>>b;
+         if(a + b > 8)
+         {
+           if(a + b > max)
+           {  
+              max = a + b;
+              min = i;
+           }
+           rsu++;
+         }
+    }
+    if(rsu)
+    {
+       cout<<min<<endl;
+    }
+    else cout<<"0";
+    return 0;
+    }
