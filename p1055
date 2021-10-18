@@ -1,0 +1,27 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    char op[14];
+    char mod[12] = "0123456789X";
+    cin>>op;
+    int sum = 0;
+    int j = 1;
+    for(int i = 0;i < 12;i++)
+{
+    if(op[i] == '-') continue;
+    sum += (op[i] - '0') * (j++);
+}
+    if(mod[sum%11] == op[12])
+{
+    cout<<"Right"<<endl;
+}
+    else 
+{
+    op[12] = mod[sum%11];
+    cout<<op<<endl;
+}
+return 0;
+}
