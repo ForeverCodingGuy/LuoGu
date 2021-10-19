@@ -1,0 +1,19 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+   int a[10],len;
+   for(int i = 0;i < 10;i++) cin>>a[i];
+   cin>>len;
+   int height = len + 30;
+   int rsu = 0;
+   for(int i = 0;i < 10;i++)
+   {
+       if(height >= a[i])
+       rsu++;
+   }
+   cout<<rsu;
+   return 0;
+}  
