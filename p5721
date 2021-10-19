@@ -1,0 +1,21 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int j = 1;
+    for(int i = n; i >= 1;i--)
+    {
+       int k = i;
+	   while(k--)
+	   {
+	   	printf("%02d",j);
+	   	j++;
+	   } 
+	   cout<<endl;
+    }
+    return 0;
+} 
