@@ -1,0 +1,26 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{ 
+   int n,k;
+   cin>>n>>k;
+   int sa = 0,na = 0,sb = 0,nb = 0;
+   
+   for(int i = 1;i <= n;i++)
+{
+   if(i % k == 0)
+{
+   sa += i; 
+   na ++;
+}
+   else
+{ 
+   sb += i;
+   nb++;
+}
+}
+   printf("%.1f %.1f",sa * 1.0/na,sb * 1.0/nb);
+return 0;
+}
