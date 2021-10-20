@@ -1,0 +1,20 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	double s;
+	scanf("%lf",&s);
+	double pace = 2.0;
+	double dit = 0.0;
+	int num = 0;
+	while(dit <= s)
+	{
+	    ++num;
+		dit += pace;
+		pace *= 0.98;
+	}
+	cout<<num<<endl;
+	return 0;
+}
