@@ -1,0 +1,18 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	double k;
+	cin>>k;
+	double cnt = 0;
+	int tem = 0;
+	while(cnt <= k)
+	{
+		++tem;
+		cnt += 1 * 1.0/tem;
+	}
+	cout<<tem<<endl;
+	return 0;
+}
