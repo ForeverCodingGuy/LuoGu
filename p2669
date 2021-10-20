@@ -1,0 +1,26 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int k;
+	cin>>k;
+	int cnt = 0;
+	for(int i = 1; ; i ++)
+	{
+		for(int j = 1;j <= i;j++)
+		{
+			if(k)
+			{
+				cnt += i;
+				k--;
+			}
+			else
+			{
+				cout<<cnt;
+				return 0;
+			}
+		}
+	}
+}
