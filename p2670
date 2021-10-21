@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+const int N = 100;
+int boom[N + 1][N + 1];
+int mov[N + 1][N + 1];
+char show[N + 1][N + 1];
+
+int main()
+{
+	int n,m;
+	scanf("%d%d",&n,&m);
+	char ch;
+	for(int i = 1;i <= n;i++)
+	{
+		for(int j = 1;j <= m;j++) 
+		{
+			cin>>ch;
+			if(ch == '*') boom[i][j] = 1;
+		}
+	}
+	for(int i = 1;i <= n;i++)
+	{
+		for(int j = 1;j <= m;j++)
+		{
+			if(boom[i][j] == 0)
+			{
+				mov[i][j] = boom[i - 1][j] + boom[i - 1][j - 1] + boom[i - 1][j + 1] + boom[i][j - 1] + boom[i][j + 1] + boom[i + 1][j - 1] + boom[i + 1][j] + boom[i + 1][j + 1];
+				show[i][j] = mov[i][j] + 48;
+			}
+			else show[i][j] = '*';
+		}
+	}
+	for(int i = 1;i <= n;i++)
+	{
+		for(int j = 1;j <= m;j++)
+		{
+			printf("%c",show[i][j]);
+		}
+		printf("\n");
+	}
+}
