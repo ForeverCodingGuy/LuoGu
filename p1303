@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1e6;
+
+int a[N],b[N],c[N];
+char s1[N],s2[N];
+
+void mul(int*a,int*b,int lenA,int lenB)
+{
+	for(int i = 0;i < lenA;i++)
+	{
+		int t = 0;
+		for(int j = 0;j < lenB;j++)
+		{
+			c[i + j] += a[i] * b[j] + t;
+			t = c[i + j] / 10;
+			c[i + j] %= 10;
+		}
+		c[i + lenB] = t;
+    }  
+}
+
+int main()
+{
+     scanf("%s",s1);
+	 scanf("%s",s2);
+	 
+	 int lenA = strlen(s1);
+	 int lenB = strlen(s2);
+	 
+	 for(int i = lenA - 1;i >= 0;i--) a[lenA - 1 - i] = s1[i] - '0';
+	 for(int i = lenB - 1;i >= 0;i--) b[lenB - 1 - i] = s2[i] - '0';
+	 
+	 mul(a,b,lenA,lenB);
+	 
+	 int len = lenA + lenB;
+	 
+	 while(c[len] == 0 && len >= 1) --len;
+	 
+	 for(int i = len;i >= 0;i--) printf("%d",c[i]);
+	 
+	 return 0;
+} 
