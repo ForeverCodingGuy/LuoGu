@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1e6;
+
+int dir[N];
+string job[N];
+
+int main()
+{
+	int n,m;
+	cin>>n>>m;
+	
+	for(int i = 1;i <= n;i++)
+	{
+		int d;
+		char str[11];
+		scanf("%d",&d);
+		scanf("%s",str);
+		dir[i] = d;
+		job[i] = str;
+	}
+	
+	int index = 1;
+	for(int i = 0;i < m;i++)
+	{
+		int a,b;
+		scanf("%d",&a);
+		scanf("%d",&b);
+		
+		if(dir[index] == 1)
+		{
+			if(a == 0)
+			{
+				index = index + b <= n ? index + b : index + b - n;
+			}
+			else
+			{
+				index = index - b > 0 ? index - b : index - b + n;
+			}
+		}
+		else
+		{
+			if(a == 0)
+			{
+				index = index - b > 0 ? index - b : index - b + n;
+			}
+			else
+			{
+				index = index + b <= n ? index + b : index + b - n;
+			}
+		}
+	}
+	
+	cout<<job[index];
+	
+	return 0;
+}
