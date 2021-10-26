@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1010;
+
+int a[N][N],n,m,l,r,mid,xx,yy;
+
+int dx[4] = {-1,0,0,1};
+int dy[4] = {0,-1,1,0};
+
+int vis[N][N];
+bool flag;
+
+void dfs(int x,int y)
+{
+	if(x == n) 
+	{
+		flag = true;
+		return ;
+	}
+	
+	for(int i = 0;i < 4;i++)
+	{
+		xx = x + dx[i];
+		yy = y + dy[i];
+		if(xx >= 1 && xx <= n && yy >= 1 && yy <= m && a[xx][yy] <= mid && !vis[xx][yy])
+		{
+			vis[xx][yy] = 1;
+			dfs(xx,yy);
+			vis[xx][yy] = 0;
+			if(flag) break; 
+		}
+	}
+}
+
+bool check(int k)
+{
+    	memset(vis,0,sizeof(vis));
+    	flag = false;
+    	dfs(1,1);
+    	if(flag) return true;
+    	else return false;
+} 
+
+int main()
+{
+	scanf("%d%d",&n,&m);
+	
+	for(int i = 1;i <= n;i++)
+	{
+		for(int j = 1;j <= m;j++)
+		{
+			scanf("%d",&a[i][j]);
+			r = max(r,a[i][j]);
+		}
+	}
+	
+	while(l + 1 < r)
+	{
+		mid = l + r >> 1;
+		if(check(mid)) r = mid;
+		else l = mid;
+	}
+	
+	cout<<r ;
+}
