@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1e6 + 10;
+int n,m;
+int diff[N],need[N],rest[N],r[N],l[N],d[N];
+
+bool isok(int x)
+{
+    memset(diff,0,sizeof(diff));
+    
+    for(int i=1;i<=x;i++)
+    {
+        diff[l[i]]    += d[i];
+        diff[r[i]+1]  -= d[i]; 
+    }
+    
+    for(int i=1;i<=n;i++)
+    {
+        need[i]=need[i-1]+diff[i];
+        if(need[i]>rest[i])return 0;
+    }
+    
+    return 1;
+}
+
+int main()
+{
+    
+    scanf("%d%d",&n,&m);
+    
+    for(int i=1;i<=n;i++)scanf("%d",&rest[i]);
+    for(int i=1;i<=m;i++)scanf("%d%d%d",&d[i],&l[i],&r[i]);
+    
+    int begin=1,end=m; 
+    if(isok(m))
+    {
+        cout<<"0";
+        return 0;
+    }
+    
+    while(begin<end)
+    {
+        int mid=(begin+end)/2;
+        if(isok(mid))begin=mid+1;
+        else end=mid;
+    }
+    cout<<"-1"<<endl<<begin;
+}
