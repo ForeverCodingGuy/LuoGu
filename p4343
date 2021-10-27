@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+typedef long long int LL;
+
+const int N = 1e5 + 10;
+
+int a[N],k,n;
+LL l,r,rsu1 = -1,rsu2 = -1;
+
+LL ans(LL t)
+{
+	LL sum = 0;
+	LL k = 0;
+	for(int i = 1;i <= n;i++)
+	{
+		sum = max(sum + a[i],0ll);
+		if(sum >= t)
+		{
+			++k;
+			sum = 0;
+		}	
+	} 
+	return k;
+}
+
+int main()
+{
+	scanf("%d%d",&n,&k);
+	
+	for(int i = 1;i <= n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	
+	l = 1,r = 1e18;
+	while(l <= r)
+	{
+		LL mid = l + r >> 1;
+		if(ans(mid) <= k)
+		{
+			r = mid - 1;
+			if(ans(mid) == k) rsu1 = mid;
+		}
+		else l = mid + 1;
+	}
+	
+	l = 1,r = 1e18;
+	while(l <= r)
+	{
+		LL mid = l + r >> 1;
+		if(ans(mid) >= k)
+		{
+			l = mid + 1;
+			if(ans(mid) == k) rsu2 = mid;
+		}
+		else r = mid - 1;
+	}
+	
+	if(rsu1 == -1) cout<<"-1"<<endl;
+	else cout<<rsu1<<" "<<rsu2;
+	
+	return 0;
+}
