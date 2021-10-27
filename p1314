@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const int N = 200006;
+ll S, sum[N];
+int w[N], v[N];
+int cnt[N], L[N], R[N], n, m; 
+int l = 214748364,r = 0;
+
+ll check(int W)
+{
+	for (int i = 1; i <= n; i++) 
+	{
+		if (w[i] >= W) 
+		{  
+			sum[i] = sum[i - 1] + v[i];
+			cnt[i] = cnt[i - 1] + 1;
+		} else {
+			sum[i] = sum[i - 1];
+			cnt[i] = cnt[i - 1];
+		}
+	}
+	ll res = 0;
+	for (int i = 0; i < m; i++) 
+	{
+	    ll t1 = sum[R[i]] - sum[L[i] - 1];
+	    ll t2 = cnt[R[i]] - cnt[L[i] - 1];
+		res += (t1 * t2);
+	}
+	return res;
+}
+
+int main() {
+	cin >> n >> m >> S;
+	for (int i = 1; i <= n; i++) 
+	{
+	    scanf("%d%d", &w[i], &v[i]);
+	    l = min(l,w[i]);
+	    r = max(r,w[i]);
+	}
+	for (int i = 0; i < m; i++)  scanf("%d%d", &L[i], &R[i]);
+	while (l < r) {
+		int mid = (l + r + 1) >> 1;  
+		if (check(mid) >= S) l = mid;
+		else r = mid - 1;
+	}
+	cout << min(abs(check(r) - S), abs(S - check(r + 1))) << endl;
+	return 0;
+} 
