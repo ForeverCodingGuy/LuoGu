@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int M = 5010;
+
+int s[M][M],n,r;
+
+int main()
+{
+    cin>>n>>r;
+    
+    while(n--)
+    {
+        int x,y,val;
+        scanf("%d%d%d",&x,&y,&val);
+        s[x + 1][y + 1] = val;
+    }
+    
+    for(int i = 1;i < 5010;i++)
+    {
+        for(int j = 1;j < 5010;j++)
+        {
+            s[i][j] += s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1];
+        }
+    }
+    
+    int ans = 0;
+    for(int i = r;i < 5010;i++)
+    {
+        for(int j = r;j < 5010;j++)
+        {
+            ans = max(ans,s[i][j] - s[i - r][j] - s[i][j - r] + s[i - r][j - r]);
+        }
+    }
+    
+    cout<<ans<<endl;
+    
+    return 0;
+}
